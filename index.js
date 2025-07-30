@@ -5,6 +5,7 @@ import express from 'express'
 import cors from 'cors'
 import { connectDB } from './config/connectdb.js';
 import { userRoutes } from './routes/user.routes.js';
+import { adminRoutes } from './routes/admin/admin.routes.js';
 const app = express();
 
 const port = process.env.PORT;
@@ -14,6 +15,7 @@ app.use(cors())
 app.use(express.json())
 connectDB(database_url)
 userRoutes(app);
+adminRoutes(app);
 
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`)
