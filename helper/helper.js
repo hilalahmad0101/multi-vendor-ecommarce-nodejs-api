@@ -38,3 +38,26 @@ export const sendEmailVerification = async (from, to, subject, text) => {
     });
     return info.messageId;
 }
+
+export const errorResponse = (res, status, message) => {
+    return res.status(status).json({
+        success: false,
+        message,
+    })
+}
+
+
+export const successResponse = (res, status, message) => {
+    return res.status(status).json({
+        success: true,
+        message,
+    })
+}
+
+export const dataResponse = (res, status, data, message) => {
+    return res.status(status).json({
+        success: true,
+        message,
+        data,
+    })
+}
