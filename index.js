@@ -7,7 +7,7 @@ import { connectDB } from './config/connectdb.js';
 import { userRoutes } from './routes/user.routes.js';
 import { adminRoutes } from './routes/admin/admin.routes.js';
 const app = express();
-
+app.use('/uploads', express.static('uploads'));
 const port = process.env.PORT;
 const database_url = process.env.DATABASE_URL;
 

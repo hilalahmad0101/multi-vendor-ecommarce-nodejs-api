@@ -121,6 +121,20 @@ class SubCategoryController {
             return res.status(500).json({ success: false, message: e.message });
         }
     };
+
+    static updateSubCategoryStatus = async (req, res) => {
+        try {
+            const sub_category_id = req.params.id;
+            const status = await updateStatus(SubCategoryModel, sub_category_id);
+            if (!status) {
+                return errorResponse(res, 404, 'Not found');
+            }
+
+            return successResponse(res, 200, `Status ${status} successfully`)
+        } catch (e) {
+            return errorResponse(res, 500, e.message)
+        }
+    }
 }
 
 export default SubCategoryController;

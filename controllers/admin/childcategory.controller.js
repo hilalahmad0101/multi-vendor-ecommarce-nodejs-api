@@ -132,6 +132,21 @@ class ChildCategoryController {
             return errorResponse(res, 500, e.message);
         }
     };
+
+
+    static updateChildCategoryStatus = async (req, res) => {
+        try {
+            const child_category_id = req.params.id;
+            const status = await updateStatus(ChildCategoryModel, child_category_id);
+            if (!status) {
+                return errorResponse(res, 404, 'Not found');
+            }
+
+            return successResponse(res, 200, `Status ${status} successfully`)
+        } catch (e) {
+            return errorResponse(res, 500, e.message)
+        }
+    }
 }
 
 export default ChildCategoryController;

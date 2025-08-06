@@ -1,3 +1,4 @@
+import { errorResponse, successResponse, updateStatus } from "../../helper/helper.js";
 import CategoryModel from "../../model/Category.model.js";
 
 class CategoryController {
@@ -160,6 +161,20 @@ class CategoryController {
                 success: false,
                 message: e.message
             });
+        }
+    }
+
+    static updateCategoryStatus = async (req, res) => {
+        try {
+            const category_id = req.params.id;
+            const status = await updateStatus(CategoryModel, category_id);
+            if (!status) {
+                return errorResponse(res, 404, 'Not found');
+            }
+
+            return successResponse(res, 200, `Status ${status} successfully`)
+        } catch (e) {
+            return errorResponse(res, 500, e.message)
         }
     }
 }
